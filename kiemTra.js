@@ -61,7 +61,7 @@ function addTransactionDom(transaction) {
     item.classList.add(transaction.amount < 0 ? 'minus':'plus');
 
     item.innerHTML = `
-        ${transaction.text} <span>${sign}${Math.abs(transaction.amount)}</span> <button class="delete-btn" onclick="removeTransaction(${transactions.id})">x</button>
+        ${transaction.text} <span>${sign}${Math.abs(transaction.amount)}</span> <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>
     `;
 
     list.appendChild(item);
@@ -88,7 +88,7 @@ function updateValues(){
 
     //remove transaction by ID
     function removeTransaction(id){
-        transactions = transaction.filter(transaction => transaction.id !== id);
+        transactions = transactions.filter(transaction => transaction.id !== id);
 
         updateLocalStorage();
 
@@ -97,7 +97,7 @@ function updateValues(){
 
 //Uppdate local storage transactions
 function updateLocalStorage() {
-    localStorage.setItem('transactions', JSON.stringify(transaction));
+    localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
 // Init app
